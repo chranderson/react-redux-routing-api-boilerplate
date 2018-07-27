@@ -1,0 +1,95 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+
+'.source.js':
+  'export default':
+    'prefix': 'exp'
+    'body': "export { default } from './${1:Name}'"
+  'class component':
+    'prefix': 'classComponent'
+    'body': """
+      import React, { Component } from 'react'
+      import PropTypes from 'prop-types'
+
+      class ${1:Name} extends Component {
+        static defaultProps = {}
+        static propTypes = {}
+
+        render() {
+          return (
+            <div>${1:Name}</div>
+          )
+        }
+      }
+
+      export default ${1:Name}
+    """
+  'constructor':
+    'prefix': 'construct'
+    'body': """
+      constructor(props) {
+        super(props)
+        this.state = {
+          ${1:prop}: ${2:value}
+        }
+      }
+    """
+  'functional component':
+    'prefix': 'functionalComponent'
+    'body': """
+      import React from 'react'
+      import PropTypes from 'prop-types'
+
+      const ${1:FunctionalCompName} = ({${2:thing}}) => {
+        // work with ${2:thing} props here
+
+        return (
+          <div>{${2:thing}}</div>
+        )
+      }
+
+      ${1:FunctionalCompName}.defaultProps = {
+        // ...props
+      }
+
+      ${1:FunctionalCompName}.propTypes = {
+        // ${2:thing}: PropTypes.${3:proptype}
+      }
+
+      ${1:FunctionalCompName}.displayName = ${1:FunctionalCompName}
+
+      export default ${1:FunctionalCompName}
+    """
+  'styled-component':
+    'prefix': 'styledComponent'
+    'body': """
+      import styled from 'styled-components'
+
+      const ${1:Name} = styled.${2:element}`
+        ${3:}
+      `
+
+      ${1:Name}.displayName = ${1.Name}
+
+      export default ${1:Name}
+    """
